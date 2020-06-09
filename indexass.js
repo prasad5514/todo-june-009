@@ -43,54 +43,49 @@
 //              return false; }
 
 // }
-
-function ajax()
-{
-    //creating an XHR object
-var xhttp=new XMLHttpRequest();
-//eventlistener
-xhttp.onreadystatechange=function()
-{
-    //condition
-    if(this.readyState==4&&this.status==200)
-    {
-        //document.getElementById("demo").innerHTML=this.responseText;
-        var response=JSON.parse(this.responseText);//responseText holding content from people.json   
-        //console.log(response);
-        var jtodo=response;
-        //var jtodo=response.todo;//. operater to access the array
-        //console.log(jpeople);
-        var output1="";
-        //var output2="";
-        for(var i=0;i<jtodo.length;i++)
-        {
-         
-            // output1+="<li>"+jpeople[i].name+"</li>";
-            // output2+="<li>"+jpeople[i].gender+"</li>";
-
-            //output1+="<ol>"+jtodo[i].title+"</ol>";
-            // output1+= "<ol><input type='checkbox' class='chkbox'" + ((jtodo[i].completed == true) ? 'checked' : '') + " ></ol>";
-            output1+="<li>"+jtodo[i].title+"<input type='checkbox' class='chkbox'" + ((jtodo[i].checked==true) ? 'checked' : '') + " ></li>";
+$(function () {
+    
+    let count = 0;
+    $("#demo").on("change", ":checkbox", function () {
+        
+        var checkstatus=this.checked;
+        
+        var promisee = new Promise(function (resolve, reject) {
+            if(checkstatus === true)count++ ;
+            console.log(count,checkstatus);
+            if (count == 5) {
+                resolve("Congratulation,you have complete 5 task today");
+            }
+        });
+        promisee
+            .then(function (f) {
+                alert(f);
+                count = 0;
+            });
+    });
+   
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            var response = JSON.parse(this.responseText);
+              //var jtodo=response.todo;
+            var jtodo = response;
+           
             
+            var output1="";
+            for (let i = 0;i<jtodo.length; i++) {
 
-            //var currentdata=jpeople[i];
-            // output1+="<tr><td>"
-            //         +jpeople[i].name+
-            //         "</td><td>"
-            //         +jpeople[i].gender+
-            //         "</td></tr>";
+                output1+="<li>"+jtodo[i].title+"<input type='checkbox'" + ((jtodo[i].completed=false) ? 'checked' : '') + " ></li>";
 
+            }
+            document.getElementById("demo").innerHTML=output1;
+          
         }
-        //console.log(output);
-        document.getElementById("demo").innerHTML=output1;
-        //document.getElementById("demo").innerHTML=output1+"<br>"+output2;
     }
-}
-//xhttp.open("GET","indexasstodos.json",true);
-xhttp.open("GET", "https://jsonplaceholder.typicode.com/todos", true);
-// xhttp.open("GET","april27people.json",true);//april27ajax.txt/april26json.json,three object in an array
-xhttp.send();  
-}      
-         
+    //xhttp.open("GET","indexasstodos.json",true);
+    xhttp.open("GET", "https://jsonplaceholder.typicode.com/todos", true);
+    xhttp.send();
+    
 
 
+});
