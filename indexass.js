@@ -1,21 +1,21 @@
-let email1=document.getElementById("email1");
-let pwd=document.getElementById("pwd");
-function validate(){
+// let email1=document.getElementById("email1");
+// let pwd=document.getElementById("pwd");
+// function validate(){
      
-     if(email1.value==="admin"&&pwd.value==="12345")
-     {
-         error1.innerHTML=" emailand password are valid";
-         error1.style.color="green";
-         return true;
-    }
-     else 
-     {
-         error1.innerHTML=" email or password is invalid";
-         error1.style.color="red";
-         return false;
+//      if(email1.value==="admin"&&pwd.value==="12345")
+//      {
+//          error1.innerHTML=" emailand password are valid";
+//          error1.style.color="green";
+//          return true;
+//     }
+//      else 
+//      {
+//          error1.innerHTML=" email or password is invalid";
+//          error1.style.color="red";
+//          return false;
   
-     };
-}
+//      };
+// }
 // function validate()
 // {
     
@@ -57,7 +57,8 @@ xhttp.onreadystatechange=function()
         //document.getElementById("demo").innerHTML=this.responseText;
         var response=JSON.parse(this.responseText);//responseText holding content from people.json   
         //console.log(response);
-        var jtodo=response.todo;//. operater to access the array
+        var jtodo=response;
+        //var jtodo=response.todo;//. operater to access the array
         //console.log(jpeople);
         var output1="";
         var output2="";
@@ -67,9 +68,10 @@ xhttp.onreadystatechange=function()
             // output1+="<li>"+jpeople[i].name+"</li>";
             // output2+="<li>"+jpeople[i].gender+"</li>";
 
-            output1+="<li>"+jtodo[i].title+"</li>";
-            output1+= "<li><input type='checkbox' class='chkbox'" + ((jtodo[i].completed == true) ? 'checked' : '') + " ></li>";
-            //output2+="<li><input type='checkbox' class='chkbox'" + ((item[i].completed == true) ? 'checked' : '') + " >+jtodo[i].title+"</li>";
+            // output1+="<ol>"+jtodo[i].title+"</ol>";
+            // output1+= "<ol><input type='checkbox' class='chkbox'" + ((jtodo[i].completed == true) ? 'checked' : '') + " ></ol>";
+            
+            output1+="<li>"+jtodo[i].title+"<input type='checkbox' class='chkbox'" + ((jtodo[i].completed == true) ? 'checked' : '') + " ></li>";
             
 
             //var currentdata=jpeople[i];
@@ -81,13 +83,15 @@ xhttp.onreadystatechange=function()
 
         }
         //console.log(output);
-        //document.getElementById("demo").innerHTML=output1;
-        document.getElementById("demo").innerHTML=output1+"<br>"+output2;
+        document.getElementById("demo").innerHTML=output1;
+        //document.getElementById("demo").innerHTML=output1+"<br>"+output2;
     }
 }
-xhttp.open("GET","indexasstodos.json",true);
+//xhttp.open("GET","indexasstodos.json",true);
+xhttp.open("GET", "https://jsonplaceholder.typicode.com/todos", true);
 // xhttp.open("GET","april27people.json",true);//april27ajax.txt/april26json.json,three object in an array
 xhttp.send();  
 }      
          
+
 
