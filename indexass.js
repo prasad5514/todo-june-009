@@ -61,17 +61,16 @@ xhttp.onreadystatechange=function()
         //var jtodo=response.todo;//. operater to access the array
         //console.log(jpeople);
         var output1="";
-        var output2="";
+        //var output2="";
         for(var i=0;i<jtodo.length;i++)
         {
          
             // output1+="<li>"+jpeople[i].name+"</li>";
             // output2+="<li>"+jpeople[i].gender+"</li>";
 
-            // output1+="<ol>"+jtodo[i].title+"</ol>";
+            //output1+="<ol>"+jtodo[i].title+"</ol>";
             // output1+= "<ol><input type='checkbox' class='chkbox'" + ((jtodo[i].completed == true) ? 'checked' : '') + " ></ol>";
-            
-            output1+="<li>"+jtodo[i].title+"<input type='checkbox' class='chkbox'" + ((jtodo[i].completed == true) ? 'checked' : '') + " ></li>";
+            output1+="<li>"+jtodo[i].title+"<input type='checkbox' class='chkbox'" + ((jtodo[i].checked==true) ? 'checked' : '') + " ></li>";
             
 
             //var currentdata=jpeople[i];
